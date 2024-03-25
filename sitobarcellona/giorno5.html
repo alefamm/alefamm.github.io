@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giorno 5</title>
+<style>
+    /* Aggiungi il font Cream Cake */
+    @font-face {
+        font-family: 'Cream Cake';
+        src: url('font.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Mont';
+        src: url('mont.ttf') format('truetype');
+    }
+
+    body {
+        background: url('sfondi/sfondo5.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Cream Cake', cursive; /* Applica il font Cream Cake */
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #3c3a3a; /* Colore del testo bianco */
+    }
+
+    .container {
+        padding: 20px;
+        position: relative;
+    }
+
+    #day {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    #description {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-family: 'mont', cursive; /* Applica il font mont */
+        line-height: 1.6; /* Altezza della riga aumentata per una migliore leggibilità */
+        text-align: center; /* Allinea il testo a sinistra */
+    }
+    #carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    overflow: visible;
+    position: relative;
+    max-height: 300px; /* Altezza massima del carosello */
+  }
+  .slide {
+    max-width: 100%;
+    max-height: 300px; /* Altezza massima delle immagini */
+    height: auto;
+    border-radius: 5px;
+    margin: 0 auto; /* Per centrare le immagini */
+    display: none; /* Nascondi le immagini per impostazione predefinita */
+    transition: transform 0.3s;
+  }
+  .active-slide {
+    display: block; /* Mostra solo l'immagine attiva */
+  }
+
+  .slide:hover {
+  transform: scale(1.1); /* Ingrandisci l'immagine del 10% al passaggio del mouse */
+}
+  #prevArrow, #nextArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  #prevArrow {
+    left: 10px;
+  }
+  #nextArrow {
+    right: 10px;
+  }
+  #backButton{
+    position: absolute;
+    bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #f8e1e1;
+  }
+  #backButton {
+    left: 20px;
+    background-color: #120b92;
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 id="day">Giorno 5</h1>
+    <div id="description">
+        <p>Check-out: max 12:00.  </p>
+        <p>Pomeriggio a cazzeggio e poi partenza volo alle 20:50 con arrivo a pisa alle 22:40</p>
+        </p>
+    </div>
+</div>
+<div id="carousel">
+    <img class="slide" src="fotogiorno5/bye.jpg" >
+ </div>
+<div id="backButton" onclick="goBack()">intinerario</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+  
+    function showSlide(index) {
+      // Nascondi tutte le immagini
+      slides.forEach((slide) => slide.classList.remove('active-slide'));
+      // Mostra l'immagine corrispondente all'indice specificato
+      slides[index].classList.add('active-slide');
+      currentSlide = index;
+    }
+  
+    // Mostra la prima immagine all'avvio
+    showSlide(currentSlide);
+  
+    // Gestisci il click sulla freccia "Precedente"
+    document.getElementById('prevArrow').addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    });
+  
+    // Gestisci il click sulla freccia "Successiva"
+    document.getElementById('nextArrow').addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    });
+      // Funzione per tornare alla pagina precedente
+  function goBack() {
+    window.location.href = "pagina4.html";
+  }
+</script>
+</body>
+</html>
